@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EU Funding to Counter Migration via Egypt: A 92-Fold Jump in Two Years</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#2c2c2a;}
+  #root{padding:16px 20px 14px;}
+  .hdr{border-left:3px solid #1D9E75;padding-left:11px;margin-bottom:10px;}
+  .tag{font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:15px;font-weight:600;line-height:1.35;margin-bottom:2px;}
+  .subtitle{font-size:12px;color:#5f5e5a;}
+  .callout{background:#f1efe8;border-left:3px solid #1D9E75;padding:8px 11px;font-size:12px;color:#5f5e5a;line-height:1.55;margin:9px 0;font-style:italic;}
+  .chart-wrap{position:relative;width:100%;height:190px;}
+  .source{font-size:10px;color:var(--gray);margin-top:10px;line-height:1.4;}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">Zawia3 &middot; Chart 4 of 4</p>
+    <p class="title">EU Funding to Counter Migration via Egypt: A 92-Fold Jump in Two Years</p>
+    <p class="subtitle">Million euros — despite record funding, crossings continued</p>
+  </div>
+  <div class="callout">"EU funding multiplied 92 times in two years — from €80 million in 2022 to a €7.4 billion strategic partnership in 2024, including €200 million earmarked for migration management."</div>
+  
+  <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+    <div style="flex:1;min-width:130px;background:#edf7f3;border-radius:8px;padding:10px 12px">
+      <div style="font-size:11px;color:#5f5e5a;margin-bottom:3px">2022 — Border guard training</div>
+      <div style="font-size:22px;font-weight:700;color:#1D9E75">&euro;80M</div>
+    </div>
+    <div style="flex:1;min-width:130px;background:#faece7;border-radius:8px;padding:10px 12px">
+      <div style="font-size:11px;color:#5f5e5a;margin-bottom:3px">2024 — Comprehensive strategic partnership</div>
+      <div style="font-size:22px;font-weight:700;color:#D85A30">&euro;7,400M</div>
+    </div>
+  </div>
+  <div style="background:#edf7f3;border-left:3px solid #1D9E75;padding:8px 12px;margin-bottom:12px">
+    <div style="font-size:11px;color:#5f5e5a;margin-bottom:1px">Of which earmarked for migration management and border surveillance</div>
+    <div style="font-size:18px;font-weight:700;color:#1D9E75">&euro;200 million</div>
+  </div>
+  <div class="chart-wrap" style="height:175px"><canvas id="c"></canvas></div>
+  <script>
+  var dk=matchMedia('(prefers-color-scheme:dark)').matches;
+  var tc=dk?'#b4b2a9':'#5f5e5a',gc=dk?'rgba(255,255,255,.08)':'rgba(0,0,0,.07)';
+  var teal=dk?'#5DCAA5':'#1D9E75',coral=dk?'#F0997B':'#D85A30';
+  new Chart(document.getElementById('c'),{type:'bar',data:{labels:['2022
+Training & equipment','2024
+Strategic partnership','Of which
+migration (2024)'],datasets:[{data:[80,7400,200],backgroundColor:[teal,coral,teal],borderWidth:0,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:1000,easing:'easeOutQuart'},plugins:{legend:{display:false},tooltip:{backgroundColor:dk?'#2c2c2a':'#fff',borderColor:dk?'rgba(255,255,255,.1)':'rgba(0,0,0,.08)',borderWidth:1,titleColor:dk?'#d3d1c7':'#2c2c2a',bodyColor:tc,padding:10,callbacks:{label:function(c){return '&euro;'+c.raw.toLocaleString()+' million';}}}},scales:{x:{ticks:{color:tc,font:{size:10}},grid:{display:false},border:{color:gc}},y:{ticks:{color:tc,font:{size:11},callback:function(v){return v>=1000?(v/1000).toFixed(1)+'k':v;}},grid:{color:gc},border:{display:false}}}}});
+  </script>
+  <p class="source">Source: Reuters / European Commission</p>
+</div>
+<script>
+setTimeout(function(){
+  var h=document.getElementById('root').offsetHeight;
+  window.parent.postMessage({type:'chartResize',height:h},'*');
+},1400);
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Children Make Up the Majority of Egyptian Irregular Migrants</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#2c2c2a;}
+  #root{padding:16px 20px 14px;}
+  .hdr{border-left:3px solid #D85A30;padding-left:11px;margin-bottom:10px;}
+  .tag{font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:15px;font-weight:600;line-height:1.35;margin-bottom:2px;}
+  .subtitle{font-size:12px;color:#5f5e5a;}
+  .callout{background:#f1efe8;border-left:3px solid #D85A30;padding:8px 11px;font-size:12px;color:#5f5e5a;line-height:1.55;margin:9px 0;font-style:italic;}
+  .chart-wrap{position:relative;width:100%;height:190px;}
+  .source{font-size:10px;color:var(--gray);margin-top:10px;line-height:1.4;}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">Zawia3 &middot; Chart 2 of 4</p>
+    <p class="title">Children Make Up the Majority of Egyptian Irregular Migrants</p>
+    <p class="subtitle">Share of under-18s among Egyptian irregular migrants — National Committee data</p>
+  </div>
+  <div class="callout">"58% of Egyptian irregular migrants are children under 18 — more than half are not adults seeking opportunity."</div>
+  
+  <div style="text-align:center;background:#faece7;border-radius:9px;padding:12px;margin-bottom:12px">
+    <div id="pct" style="font-size:40px;font-weight:800;color:#D85A30;line-height:1">0%</div>
+    <div style="font-size:12px;color:#5f5e5a;margin-top:3px">of Egyptian irregular migrants are children under 18</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+    <div style="position:relative;width:170px;height:170px;flex-shrink:0"><canvas id="c"></canvas></div>
+    <div id="leg" style="display:flex;flex-direction:column;gap:12px;flex:1;min-width:120px"></div>
+  </div>
+  <script>
+  var dk=matchMedia('(prefers-color-scheme:dark)').matches;
+  var coral=dk?'#F0997B':'#D85A30',blue=dk?'#85B7EB':'#378ADD';
+  var labels=['Minors (under 18)','Adults'],values=[58,42],colors=[coral,blue];
+  var s=null;function cu(ts){if(!s)s=ts;var p=Math.min((ts-s)/900,1),e=1-Math.pow(1-p,3);document.getElementById('pct').textContent=Math.round(e*58)+'%';if(p<1)requestAnimationFrame(cu);else document.getElementById('pct').textContent='58%';}
+  setTimeout(function(){requestAnimationFrame(cu);},100);
+  new Chart(document.getElementById('c'),{type:'doughnut',data:{labels:labels,datasets:[{data:values,backgroundColor:colors,borderWidth:3,borderColor:dk?'#1a1a18':'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,animation:{animateRotate:true,animateScale:true,duration:1000,easing:'easeOutQuart'},plugins:{legend:{display:false},tooltip:{backgroundColor:dk?'#2c2c2a':'#fff',borderColor:dk?'rgba(255,255,255,.1)':'rgba(0,0,0,.08)',borderWidth:1,titleColor:dk?'#d3d1c7':'#2c2c2a',bodyColor:dk?'#b4b2a9':'#5f5e5a',padding:10,callbacks:{label:function(c){return ' '+c.label+': '+c.raw+'%';}}}},cutout:'62%'}});
+  var leg=document.getElementById('leg');
+  labels.forEach(function(l,i){leg.innerHTML+='<div style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:2px;background:'+colors[i]+';flex-shrink:0"></span><div><div style="font-size:12px;color:#5f5e5a">'+l+'</div><div style="font-size:20px;font-weight:700;color:'+colors[i]+'">'+values[i]+'%</div></div></div>';});
+  </script>
+  <p class="source">Source: National Committee to Combat Irregular Migration and Human Trafficking</p>
+</div>
+<script>
+setTimeout(function(){
+  var h=document.getElementById('root').offsetHeight;
+  window.parent.postMessage({type:'chartResize',height:h},'*');
+},1400);
+</script>
+</body>
+</html>

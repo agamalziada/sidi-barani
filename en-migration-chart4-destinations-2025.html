@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Where Egyptian Irregular Migrants Arrived in 2025</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#2c2c2a;}
+  #root{padding:16px 20px 14px;}
+  .hdr{border-left:3px solid #378ADD;padding-left:11px;margin-bottom:10px;}
+  .tag{font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:15px;font-weight:600;line-height:1.35;margin-bottom:2px;}
+  .subtitle{font-size:12px;color:#5f5e5a;}
+  .callout{background:#f1efe8;border-left:3px solid #378ADD;padding:8px 11px;font-size:12px;color:#5f5e5a;line-height:1.55;margin:9px 0;font-style:italic;}
+  .chart-wrap{position:relative;width:100%;height:190px;}
+  .source{font-size:10px;color:var(--gray);margin-top:10px;line-height:1.4;}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">Zawia3 &middot; Chart 3 of 4</p>
+    <p class="title">Where Egyptian Irregular Migrants Arrived in 2025</p>
+    <p class="subtitle">Distribution of 16,086 documented crossings — Italy and Greece</p>
+  </div>
+  <div class="callout">"More than half of Egyptian irregular migrants in 2025 headed to Italy, with nearly the other half crossing to Greece."</div>
+  
+  <div style="text-align:center;background:#eef4fb;border-radius:9px;padding:10px;margin-bottom:12px">
+    <div style="font-size:11px;color:#5f5e5a;margin-bottom:2px">Total Egyptian irregular crossings in 2025</div>
+    <div style="font-size:26px;font-weight:800;color:#378ADD">16,086 cases</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+    <div style="position:relative;width:170px;height:170px;flex-shrink:0"><canvas id="c"></canvas></div>
+    <div id="leg" style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:120px"></div>
+  </div>
+  <script>
+  var dk=matchMedia('(prefers-color-scheme:dark)').matches;
+  var blue=dk?'#85B7EB':'#378ADD',teal=dk?'#5DCAA5':'#1D9E75';
+  var labels=['Italy','Greece'],values=[8715,7371],pcts=['54.2%','45.8%'],colors=[blue,teal];
+  new Chart(document.getElementById('c'),{type:'doughnut',data:{labels:labels,datasets:[{data:values,backgroundColor:colors,borderWidth:3,borderColor:dk?'#1a1a18':'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,animation:{animateRotate:true,animateScale:true,duration:1000,easing:'easeOutQuart'},plugins:{legend:{display:false},tooltip:{backgroundColor:dk?'#2c2c2a':'#fff',borderColor:dk?'rgba(255,255,255,.1)':'rgba(0,0,0,.08)',borderWidth:1,titleColor:dk?'#d3d1c7':'#2c2c2a',bodyColor:dk?'#b4b2a9':'#5f5e5a',padding:10,callbacks:{label:function(c){return ' '+c.label+': '+c.raw.toLocaleString()+' cases ('+pcts[c.dataIndex]+')';}}}},cutout:'62%'}});
+  var leg=document.getElementById('leg');
+  labels.forEach(function(l,i){leg.innerHTML+='<div style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:2px;background:'+colors[i]+';flex-shrink:0"></span><div><div style="font-size:12px;color:#5f5e5a">'+l+'</div><div style="font-size:20px;font-weight:700;color:'+colors[i]+'">'+values[i].toLocaleString()+'</div><div style="font-size:11px;color:#5f5e5a">cases ('+pcts[i]+')</div></div></div>';});
+  </script>
+  <p class="source">Source: Frontex / Le Monde</p>
+</div>
+<script>
+setTimeout(function(){
+  var h=document.getElementById('root').offsetHeight;
+  window.parent.postMessage({type:'chartResize',height:h},'*');
+},1400);
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Egyptian Irregular Migration to Europe: A 29-Fold Rise in Four Years</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#2c2c2a;}
+  #root{padding:16px 20px 14px;}
+  .hdr{border-left:3px solid #D85A30;padding-left:11px;margin-bottom:10px;}
+  .tag{font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:15px;font-weight:600;line-height:1.35;margin-bottom:2px;}
+  .subtitle{font-size:12px;color:#5f5e5a;}
+  .callout{background:#f1efe8;border-left:3px solid #D85A30;padding:8px 11px;font-size:12px;color:#5f5e5a;line-height:1.55;margin:9px 0;font-style:italic;}
+  .chart-wrap{position:relative;width:100%;height:190px;}
+  .source{font-size:10px;color:var(--gray);margin-top:10px;line-height:1.4;}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">Zawia3 &middot; Chart 1 of 4</p>
+    <p class="title">Egyptian Irregular Migration to Europe: A 29-Fold Rise in Four Years</p>
+    <p class="subtitle">Documented irregular crossings — 2018 to 2025</p>
+  </div>
+  <div class="callout">"Egyptian irregular migration surged from 709 cases in 2018 to more than 21,000 in 2022 — a 29-fold increase in just four years."</div>
+  
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+    <div style="flex:1;min-width:90px;background:#faece7;border-radius:7px;padding:9px 11px">
+      <div style="font-size:11px;color:#5f5e5a;margin-bottom:2px">2018</div>
+      <div style="font-size:20px;font-weight:700;color:#888780">709</div>
+      <div style="font-size:10px;color:#5f5e5a">cases</div>
+    </div>
+    <div style="flex:1;min-width:90px;background:#faece7;border-radius:7px;padding:9px 11px">
+      <div style="font-size:11px;color:#5f5e5a;margin-bottom:2px">2022</div>
+      <div style="font-size:20px;font-weight:700;color:#D85A30">21,000+</div>
+      <div style="font-size:10px;color:#5f5e5a">cases</div>
+    </div>
+    <div style="flex:1;min-width:90px;background:#faece7;border-radius:7px;padding:9px 11px">
+      <div style="font-size:11px;color:#5f5e5a;margin-bottom:2px">Multiplier</div>
+      <div style="font-size:20px;font-weight:700;color:#D85A30">×29</div>
+      <div style="font-size:10px;color:#5f5e5a">in 4 years</div>
+    </div>
+  </div>
+  <div class="chart-wrap" style="height:200px"><canvas id="c"></canvas></div>
+  <script>
+  var dk=matchMedia('(prefers-color-scheme:dark)').matches;
+  var tc=dk?'#b4b2a9':'#5f5e5a',gc=dk?'rgba(255,255,255,.08)':'rgba(0,0,0,.07)';
+  var coral=dk?'#F0997B':'#D85A30',gray=dk?'#B4B2A9':'#888780';
+  var data=[709,7938,21000,16000];
+  var colors=data.map(function(v,i){return i===2?coral:i===0?gray:dk?'#F0BBA8':'#E8876A';});
+  new Chart(document.getElementById('c'),{type:'bar',data:{labels:['2018','2021','2022','2025'],datasets:[{data:data,backgroundColor:colors,borderWidth:0,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:1000,easing:'easeOutQuart'},plugins:{legend:{display:false},tooltip:{backgroundColor:dk?'#2c2c2a':'#fff',borderColor:dk?'rgba(255,255,255,.1)':'rgba(0,0,0,.08)',borderWidth:1,titleColor:dk?'#d3d1c7':'#2c2c2a',bodyColor:tc,padding:10,callbacks:{label:function(c){return c.raw.toLocaleString()+' cases';}}}},scales:{x:{ticks:{color:tc,font:{size:12}},grid:{display:false},border:{color:gc}},y:{ticks:{color:tc,font:{size:11},callback:function(v){return v>=1000?(v/1000).toFixed(0)+'k':v;}},grid:{color:gc},border:{display:false}}}}});
+  </script>
+  <p class="source">Source: MP Ayman Mohseb / Frontex / Diraya study</p>
+</div>
+<script>
+setTimeout(function(){
+  var h=document.getElementById('root').offsetHeight;
+  window.parent.postMessage({type:'chartResize',height:h},'*');
+},1400);
+</script>
+</body>
+</html>
