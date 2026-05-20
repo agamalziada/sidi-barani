@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>نسبة القاصرين بين المهاجرين المصريين غير النظاميين</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Tajawal',sans-serif;background:#fff;color:#2c2c2a;direction:rtl;}
+  #root{padding:16px 20px 14px;}
+  .hdr{border-right:3px solid #D85A30;padding-right:11px;margin-bottom:10px;}
+  .tag{font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:15px;font-weight:700;line-height:1.4;margin-bottom:2px;}
+  .subtitle{font-size:12px;color:#5f5e5a;}
+  .callout{background:#f1efe8;border-right:3px solid #D85A30;padding:8px 11px;font-size:12px;color:#5f5e5a;line-height:1.6;margin:9px 0;font-style:italic;}
+  .chart-wrap{position:relative;width:100%;height:190px;}
+  .source{font-size:10px;color:var(--gray);margin-top:10px;line-height:1.4;text-align:right;}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">زاوية ثالثة · إنفوجرافيك ② من ⑤</p>
+    <p class="title">نسبة القاصرين بين المهاجرين المصريين غير النظاميين</p>
+    <p class="subtitle">المهاجرون دون سن الـ18 — بيانات اللجنة الوطنية لمكافحة الهجرة غير النظامية</p>
+  </div>
+  <div class="callout">"58% من المهاجرين غير النظاميين المصريين هم أطفال دون الـ18 عامًا — أكثر من نصفهم ليسوا بالغين يبحثون عن فرص"</div>
+  
+  <div style="text-align:center;background:#faece7;border-radius:9px;padding:12px;margin-bottom:12px">
+    <div id="pct" style="font-size:40px;font-weight:800;color:#D85A30;line-height:1">0%</div>
+    <div style="font-size:12px;color:#5f5e5a;margin-top:3px">من المهاجرين المصريين غير النظاميين هم أطفال دون الـ18</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+    <div style="position:relative;width:170px;height:170px;flex-shrink:0"><canvas id="c"></canvas></div>
+    <div id="leg" style="display:flex;flex-direction:column;gap:12px;flex:1;min-width:120px"></div>
+  </div>
+  <script>
+  var dk=matchMedia('(prefers-color-scheme:dark)').matches;
+  var coral=dk?'#F0997B':'#D85A30',blue=dk?'#85B7EB':'#378ADD';
+  var labels=['قاصرون (دون 18)','بالغون'],values=[58,42],colors=[coral,blue];
+  var s=null;function cu(ts){if(!s)s=ts;var p=Math.min((ts-s)/900,1),e=1-Math.pow(1-p,3);document.getElementById('pct').textContent=Math.round(e*58)+'%';if(p<1)requestAnimationFrame(cu);else document.getElementById('pct').textContent='58%';}
+  setTimeout(function(){requestAnimationFrame(cu);},100);
+  new Chart(document.getElementById('c'),{type:'doughnut',data:{labels:labels,datasets:[{data:values,backgroundColor:colors,borderWidth:3,borderColor:dk?'#1a1a18':'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,animation:{animateRotate:true,animateScale:true,duration:1000,easing:'easeOutQuart'},plugins:{legend:{display:false},tooltip:{backgroundColor:dk?'#2c2c2a':'#fff',borderColor:dk?'rgba(255,255,255,.1)':'rgba(0,0,0,.08)',borderWidth:1,titleColor:dk?'#d3d1c7':'#2c2c2a',bodyColor:dk?'#b4b2a9':'#5f5e5a',titleFont:{family:'Tajawal'},bodyFont:{family:'Tajawal'},padding:10,callbacks:{label:function(c){return ' '+c.label+': '+c.raw+'%';}}}},cutout:'62%'}});
+  var leg=document.getElementById('leg');
+  labels.forEach(function(l,i){leg.innerHTML+='<div style="display:flex;align-items:center;gap:8px"><span style="width:11px;height:11px;border-radius:2px;background:'+colors[i]+';flex-shrink:0"></span><div><div style="font-size:12px;color:#5f5e5a">'+l+'</div><div style="font-size:20px;font-weight:700;color:'+colors[i]+'">'+values[i]+'%</div></div></div>';});
+  </script>
+  <p class="source">المصدر: اللجنة الوطنية لمكافحة الهجرة غير النظامية والاتجار بالبشر</p>
+</div>
+<script>
+setTimeout(function(){
+  var h=document.getElementById('root').offsetHeight;
+  window.parent.postMessage({type:'chartResize',height:h},'*');
+},1400);
+</script>
+</body>
+</html>

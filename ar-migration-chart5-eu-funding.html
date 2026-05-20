@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>التمويل الأوروبي لمكافحة الهجرة عبر مصر: القفزة بين 2022 و2024</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#378ADD;--coral:#D85A30;--teal:#1D9E75;--amber:#BA7517;--gray:#888780;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Tajawal',sans-serif;background:#fff;color:#2c2c2a;direction:rtl;}
+  #root{padding:16px 20px 14px;}
+  .hdr{border-right:3px solid #1D9E75;padding-right:11px;margin-bottom:10px;}
+  .tag{font-size:10px;font-weight:700;letter-spacing:.07em;color:var(--gray);margin-bottom:2px;text-transform:uppercase;}
+  .title{font-size:15px;font-weight:700;line-height:1.4;margin-bottom:2px;}
+  .subtitle{font-size:12px;color:#5f5e5a;}
+  .callout{background:#f1efe8;border-right:3px solid #1D9E75;padding:8px 11px;font-size:12px;color:#5f5e5a;line-height:1.6;margin:9px 0;font-style:italic;}
+  .chart-wrap{position:relative;width:100%;height:190px;}
+  .source{font-size:10px;color:var(--gray);margin-top:10px;line-height:1.4;text-align:right;}
+  @media(prefers-color-scheme:dark){
+    body{background:#1a1a18;color:#d3d1c7;}
+    .callout{background:#2c2c2a;color:#b4b2a9;}
+    .subtitle,.source{color:#b4b2a9;}
+  }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="hdr">
+    <p class="tag">زاوية ثالثة · إنفوجرافيك ⑤ من ⑤</p>
+    <p class="title">التمويل الأوروبي لمكافحة الهجرة عبر مصر: القفزة بين 2022 و2024</p>
+    <p class="subtitle">مليون يورو — رغم التمويل الهائل، الهجرة لم تتوقف</p>
+  </div>
+  <div class="callout">"تضاعف التمويل الأوروبي 92 مرة في سنتين — من 80 مليون يورو عام 2022 إلى اتفاقية شراكة بـ7.4 مليار يورو في 2024، تضمنت 200 مليون مخصصة لإدارة الهجرة"</div>
+  
+  <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+    <div style="flex:1;min-width:130px;background:#edf7f3;border-radius:8px;padding:10px 12px">
+      <div style="font-size:11px;color:#5f5e5a;margin-bottom:3px">2022 — تدريب حرس الحدود</div>
+      <div style="font-size:22px;font-weight:700;color:#1D9E75">80 م.€</div>
+    </div>
+    <div style="flex:1;min-width:130px;background:#faece7;border-radius:8px;padding:10px 12px">
+      <div style="font-size:11px;color:#5f5e5a;margin-bottom:3px">2024 — شراكة استراتيجية شاملة</div>
+      <div style="font-size:22px;font-weight:700;color:#D85A30">7,400 م.€</div>
+    </div>
+  </div>
+  <div style="background:#edf7f3;border-right:3px solid #1D9E75;padding:8px 12px;margin-bottom:12px">
+    <div style="font-size:11px;color:#5f5e5a;margin-bottom:1px">منها مخصص لإدارة الهجرة والرقابة الحدودية</div>
+    <div style="font-size:18px;font-weight:700;color:#1D9E75">200 مليون يورو</div>
+  </div>
+  <div class="chart-wrap" style="height:175px"><canvas id="c"></canvas></div>
+  <script>
+  var dk=matchMedia('(prefers-color-scheme:dark)').matches;
+  var tc=dk?'#b4b2a9':'#5f5e5a',gc=dk?'rgba(255,255,255,.08)':'rgba(0,0,0,.07)';
+  var teal=dk?'#5DCAA5':'#1D9E75',coral=dk?'#F0997B':'#D85A30';
+  new Chart(document.getElementById('c'),{type:'bar',data:{labels:['2022
+تجهيزات وتدريب','2024
+شراكة استراتيجية','منها
+للهجرة (2024)'],datasets:[{data:[80,7400,200],backgroundColor:[teal,coral,teal],borderWidth:0,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:1000,easing:'easeOutQuart'},plugins:{legend:{display:false},tooltip:{backgroundColor:dk?'#2c2c2a':'#fff',borderColor:dk?'rgba(255,255,255,.1)':'rgba(0,0,0,.08)',borderWidth:1,titleColor:dk?'#d3d1c7':'#2c2c2a',bodyColor:tc,titleFont:{family:'Tajawal'},bodyFont:{family:'Tajawal'},padding:10,callbacks:{label:function(c){return c.raw.toLocaleString('ar-EG')+' مليون يورو';}}}},scales:{x:{ticks:{color:tc,font:{size:10,family:'Tajawal'}},grid:{display:false},border:{color:gc}},y:{ticks:{color:tc,font:{size:11,family:'Tajawal'},callback:function(v){return v>=1000?(v/1000).toFixed(1)+'k':v;}},grid:{color:gc},border:{display:false}}}}});
+  </script>
+  <p class="source">المصدر: رويترز / المفوضية الأوروبية</p>
+</div>
+<script>
+setTimeout(function(){
+  var h=document.getElementById('root').offsetHeight;
+  window.parent.postMessage({type:'chartResize',height:h},'*');
+},1400);
+</script>
+</body>
+</html>
